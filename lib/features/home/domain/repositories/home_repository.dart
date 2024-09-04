@@ -1,6 +1,8 @@
+import 'package:bookly/core/errors/failure.dart';
 import 'package:bookly/features/home/domain/entities/book_entitie.dart';
+import 'package:dartz/dartz.dart';
 
 abstract class HomeRepository {
-  Future<List<BookEnitie>> fetchFeaturedBooks();
-  Future<List<BookEnitie>> fetchNewestBooks();
+  Future<Either<Failure, List<BookEnitie>>> fetchFeaturedBooks();
+  Future<Either<Failure, List<BookEnitie>>> fetchNewestBooks();
 }
