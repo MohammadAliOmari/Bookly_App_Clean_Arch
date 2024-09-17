@@ -12,7 +12,10 @@ class SerchResultList extends StatelessWidget {
         itemBuilder: (context, index) {
           return const Padding(
             padding: EdgeInsets.only(bottom: 10.0),
-            child: BestSellerListItem(),
+            child: BestSellerListItem(
+              books: [],
+              index: 1,
+            ),
           );
         },
         itemCount: 20,

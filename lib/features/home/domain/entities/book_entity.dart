@@ -15,6 +15,8 @@ class BookEnitie {
   final num? price;
   @HiveField(5)
   final num? rating;
+  @HiveField(6)
+  final num countRating;
 
   BookEnitie({
     required this.bookid,
@@ -23,5 +25,6 @@ class BookEnitie {
     required this.authorName,
     required this.price,
     required this.rating,
+    required this.countRating,
   });
 }

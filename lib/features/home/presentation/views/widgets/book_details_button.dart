@@ -1,10 +1,13 @@
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 
 class BooksDetailsButtonsAction extends StatelessWidget {
-  const BooksDetailsButtonsAction({super.key});
-
+  const BooksDetailsButtonsAction(
+      {super.key, required this.books, required this.index});
+  final List<BookEnitie> books;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,7 +18,9 @@ class BooksDetailsButtonsAction extends StatelessWidget {
             child: CustomButton(
               style: Styles.textSyle18
                   .copyWith(color: Colors.black, fontWeight: FontWeight.w900),
-              text: '18.8\$',
+              text: books[index].price != null
+                  ? '${books[index].price} \$'
+                  : 'Free',
               bgcolor: Colors.white,
               borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(16),

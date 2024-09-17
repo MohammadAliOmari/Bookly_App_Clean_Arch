@@ -1,10 +1,11 @@
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/presentation/views/widgets/books_details_list.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsListSection extends StatelessWidget {
-  const BookDetailsListSection({super.key});
-
+  const BookDetailsListSection({super.key, required this.books});
+  final List<BookEnitie> books;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +21,9 @@ class BookDetailsListSection extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        const BooksDetailsList(),
+        BooksDetailsList(
+          books: books,
+        ),
       ],
     );
   }
