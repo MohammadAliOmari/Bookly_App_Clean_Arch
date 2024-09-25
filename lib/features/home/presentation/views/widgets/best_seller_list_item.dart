@@ -31,7 +31,7 @@ class BestSellerListItem extends StatelessWidget {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: CachedNetworkImage(
-                        fit: BoxFit.fill, imageUrl: books[index].image ?? ''))),
+                        fit: BoxFit.fill, imageUrl: books[index].image ?? 'https://images.unsplash.com/photo-1532012197267-da84d127e765?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D'))),
             const SizedBox(
               width: 30,
             ),

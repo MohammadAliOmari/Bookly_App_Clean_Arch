@@ -33,9 +33,10 @@ class BookModel extends BookEnitie {
     this.searchInfo,
   }) : super(
           bookid: id!,
-          image: volumeInfo!.imageLinks?.thumbnail ?? '',
+          image: volumeInfo!.imageLinks?.thumbnail ??
+              'https://images.unsplash.com/photo-1532012197267-da84d127e765?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D',
           title: volumeInfo.title!,
-          authorName: volumeInfo.authors?.first ?? 'No authors',
+          authorName: volumeInfo.authors?.first ?? '',
           price: saleInfo?.listPrice?.amount,
           rating: volumeInfo.averageRating ?? 0,
           countRating: volumeInfo.ratingsCount ?? 0,

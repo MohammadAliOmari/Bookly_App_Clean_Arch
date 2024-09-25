@@ -7,6 +7,14 @@ final class FeaturedBooksInitial extends HomeState {}
 
 final class FeaturedBooksLoading extends HomeState {}
 
+final class FeaturedBooksPaginationLoading extends HomeState {}
+
+final class FeaturedBooksPaginatioError extends HomeState {
+  final String errMsg;
+
+  FeaturedBooksPaginatioError(this.errMsg);
+}
+
 final class FeaturedBooksError extends HomeState {
   final String errorM;
 

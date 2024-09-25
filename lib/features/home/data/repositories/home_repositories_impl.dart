@@ -13,15 +13,31 @@ class HomeRepositoriesImpl extends HomeRepository {
   HomeRepositoriesImpl(
       {required this.homeRemoteDataSource, required this.homeLocalDataSource});
   @override
-  Future<Either<Failure, List<BookEnitie>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BookEnitie>>> fetchFeaturedBooks(
+      {int pageNumber = 0}) async {
     try {
-      List<BookEnitie> books;
-      books = homeLocalDataSource.fetchFeaturedBooks();
-      if (books.isNotEmpty) {
-        return right(books);
+      List<BookEnitie> cachedBooks = [];
+      List<BookEnitie> newBooks = [];
+
+      // Fetch the cached books only when pageNumber is 0 (first fetch)
+      if (pageNumber == 0) {
+        cachedBooks = homeLocalDataSource.fetchFeaturedBooks();
+        if (cachedBooks.isNotEmpty) {
+          return right(cachedBooks);
+        }
       }
-      books = await homeRemoteDataSource.fetchFeaturedBooks();
-      return right(books);
+
+      // Fetch the new books from the remote data source
+      newBooks =
+          await homeRemoteDataSource.fetchFeaturedBooks(pageNumber: pageNumber);
+
+      // If cached books exist, combine cached and new books
+      if (cachedBooks.isNotEmpty) {
+        // Combine cached and new books without duplicates
+        newBooks = [...cachedBooks, ...newBooks];
+      }
+
+      return right(newBooks);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

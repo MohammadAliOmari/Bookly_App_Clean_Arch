@@ -3,13 +3,13 @@ import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:hive/hive.dart';
 
 abstract class HomeLocalDataSource {
-  List<BookEnitie> fetchFeaturedBooks();
+  List<BookEnitie> fetchFeaturedBooks({int pageNumber = 0});
   List<BookEnitie> fetchNewestBooks();
 }
 
 class HomeLocalDataSourceImpl extends HomeLocalDataSource {
   @override
-  List<BookEnitie> fetchFeaturedBooks() {
+  List<BookEnitie> fetchFeaturedBooks({int pageNumber = 0}) {
     var box = Hive.box<BookEnitie>(kFeaturedBox);
     return box.values.toList();
   }
