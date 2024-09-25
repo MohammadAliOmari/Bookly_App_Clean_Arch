@@ -1,18 +1,19 @@
 // To parse this JSON data, do
 //
-//     final bookModel = bookModelFromJson(jsonString);
+//     final SearchBookModel = SearchBookModelFromJson(jsonString);
 
 import 'dart:convert';
 
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 
-List<BookModel> bookModelFromJson(String str) =>
-    List<BookModel>.from(json.decode(str).map((x) => BookModel.fromJson(x)));
+List<SearchBookModel> searchBookModelFromJson(String str) =>
+    List<SearchBookModel>.from(
+        json.decode(str).map((x) => SearchBookModel.fromJson(x)));
 
-String bookModelToJson(List<BookModel> data) =>
+String searchBookModelToJson(List<SearchBookModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class BookModel extends BookEnitie {
+class SearchBookModel extends BookEnitie {
   Kind? kind;
   String? id;
   String? etag;
@@ -22,7 +23,7 @@ class BookModel extends BookEnitie {
   AccessInfo? accessInfo;
   SearchInfo? searchInfo;
 
-  BookModel({
+  SearchBookModel({
     this.kind,
     this.id,
     this.etag,
@@ -35,13 +36,14 @@ class BookModel extends BookEnitie {
           bookid: id!,
           image: volumeInfo!.imageLinks?.thumbnail ?? '',
           title: volumeInfo.title!,
-          authorName: volumeInfo.authors?.first ?? 'No authors',
+          authorName: volumeInfo.authors?.first ?? 'No',
           price: saleInfo?.listPrice?.amount,
           rating: volumeInfo.averageRating ?? 0,
           countRating: volumeInfo.ratingsCount ?? 0,
         );
 
-  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
+  factory SearchBookModel.fromJson(Map<String, dynamic> json) =>
+      SearchBookModel(
         kind: kindValues.map[json["kind"]]!,
         id: json["id"],
         etag: json["etag"],
@@ -52,9 +54,9 @@ class BookModel extends BookEnitie {
         saleInfo: json["saleInfo"] == null
             ? null
             : SaleInfo.fromJson(json["saleInfo"]),
-        // accessInfo: json["accessInfo"] == null
-        //     ? null
-        //     : AccessInfo.fromJson(json["accessInfo"]),
+        accessInfo: json["accessInfo"] == null
+            ? null
+            : AccessInfo.fromJson(json["accessInfo"]),
         searchInfo: json["searchInfo"] == null
             ? null
             : SearchInfo.fromJson(json["searchInfo"]),
@@ -98,19 +100,19 @@ class AccessInfo {
     this.quoteSharingAllowed,
   });
 
-  // factory AccessInfo.fromJson(Map<String, dynamic> json) => AccessInfo(
-  //       country: countryValues.map[json["country"]]!,
-  //       viewability: viewabilityValues.map[json["viewability"]],
-  //       embeddable: json["embeddable"],
-  //       publicDomain: json["publicDomain"],
-  //       textToSpeechPermission:
-  //           textToSpeechPermissionValues.map[json["textToSpeechPermission"]],
-  //       epub: json["epub"] == null ? null : Epub.fromJson(json["epub"]),
-  //       pdf: json["pdf"] == null ? null : Epub.fromJson(json["pdf"]),
-  //       webReaderLink: json["webReaderLink"],
-  //       accessViewStatus: accessViewStatusValues.map[json["accessViewStatus"]]!,
-  //       quoteSharingAllowed: json["quoteSharingAllowed"],
-  //     );
+  factory AccessInfo.fromJson(Map<String, dynamic> json) => AccessInfo(
+        country: countryValues.map[json["country"]]!,
+        viewability: viewabilityValues.map[json["viewability"]],
+        embeddable: json["embeddable"],
+        publicDomain: json["publicDomain"],
+        textToSpeechPermission:
+            textToSpeechPermissionValues.map[json["textToSpeechPermission"]],
+        epub: json["epub"] == null ? null : Epub.fromJson(json["epub"]),
+        pdf: json["pdf"] == null ? null : Epub.fromJson(json["pdf"]),
+        webReaderLink: json["webReaderLink"],
+        accessViewStatus: accessViewStatusValues.map[json["accessViewStatus"]]!,
+        quoteSharingAllowed: json["quoteSharingAllowed"],
+      );
 
   Map<String, dynamic> toJson() => {
         "country": countryValues.reverse[country],
@@ -190,7 +192,7 @@ class SaleInfo {
   });
 
   factory SaleInfo.fromJson(Map<String, dynamic> json) => SaleInfo(
-        country: countryValues.map[json["country"]],
+        country: countryValues.map[json["country"]]!,
         saleability: saleabilityValues.map[json["saleability"]],
         isEbook: json["isEbook"],
         listPrice: json["listPrice"] == null
@@ -368,7 +370,7 @@ class VolumeInfo {
         description: json["description"],
         industryIdentifiers: json["industryIdentifiers"] == null
             ? []
-            : List<IndustryIdentifier>.from(json["industryIdentifiers"]
+            : List<IndustryIdentifier>.from(json["industryIdentifiers"]!
                 .map((x) => IndustryIdentifier.fromJson(x))),
         readingModes: json["readingModes"] == null
             ? null
@@ -378,7 +380,7 @@ class VolumeInfo {
         categories: json["categories"] == null
             ? []
             : List<String>.from(json["categories"]!.map((x) => x)),
-        maturityRating: maturityRatingValues.map[json["maturityRating"]],
+        maturityRating: maturityRatingValues.map[json["maturityRating"]]!,
         allowAnonLogging: json["allowAnonLogging"],
         contentVersion: json["contentVersion"],
         panelizationSummary: json["panelizationSummary"] == null

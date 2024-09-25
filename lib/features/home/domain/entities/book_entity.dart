@@ -27,4 +27,27 @@ class BookEnitie {
     required this.rating,
     required this.countRating,
   });
+  Map<String, dynamic> toJson() {
+    return {
+      'bookid': bookid,
+      'title': title,
+      'authorName': authorName,
+      'image': image,
+      'price': price,
+      'rating': rating,
+      'countRating': countRating,
+    };
+  }
+
+  factory BookEnitie.fromJson(Map<String, dynamic> json) {
+    return BookEnitie(
+      bookid: json['bookid'],
+      title: json['title'],
+      authorName: json['authorName'],
+      image: json['image'],
+      price: json['price'],
+      rating: json['rating'],
+      countRating: json['countRating'],
+    );
+  }
 }

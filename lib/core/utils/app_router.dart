@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static const kBookDetailsView = '/BookDetailsView/:index';
+  static const kSearchBookDetailsView = '/SearchBookDetailsView/:index';
   static const kSearchView = '/SearchView';
   static final router = GoRouter(routes: [
     GoRoute(
@@ -16,7 +17,21 @@ abstract class AppRouter {
     GoRoute(
       path: kBookDetailsView,
       builder: (context, state) {
+        final List<dynamic> booksdata = state.extra as List<dynamic>;
+        final List<BookEnitie> books =
+            booksdata.map((data) => BookEnitie.fromJson(data)).toList();
+        final int index = int.parse(state.pathParameters['index']!);
+        return BookDetailsView(
+          books: books,
+          index: index,
+        );
+      },
+    ),
+    GoRoute(
+      path: kSearchBookDetailsView,
+      builder: (context, state) {
         final List<BookEnitie> books = state.extra as List<BookEnitie>;
+
         final int index = int.parse(state.pathParameters['index']!);
         return BookDetailsView(
           books: books,
@@ -26,7 +41,9 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: kSearchView,
-      builder: (context, state) => const SearchView(),
+      builder: (context, state) {
+        return const SearchView();
+      },
     ),
   ]);
 }

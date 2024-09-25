@@ -2,6 +2,8 @@ import 'package:bookly/core/utils/api_services.dart';
 import 'package:bookly/features/home/data/data_source/home_local_data_source.dart';
 import 'package:bookly/features/home/data/data_source/home_remote_data_source.dart';
 import 'package:bookly/features/home/data/repositories/home_repositories_impl.dart';
+import 'package:bookly/features/search/data/data_source/search_remote_data_source.dart';
+import 'package:bookly/features/search/data/repositories/search_repository_impl.dart';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -16,5 +18,8 @@ void setupServiceLocater() {
       homeRemoteDataSource: HomeRemoteDataSourceImpl(getIt.get<ApiServices>()),
       homeLocalDataSource: HomeLocalDataSourceImpl(),
     ),
+  );
+  getIt.registerSingleton<SearchRepositoryImpl>(
+    SearchRepositoryImpl(SearcHremoteDataSourceImpl(getIt.get<ApiServices>())),
   );
 }

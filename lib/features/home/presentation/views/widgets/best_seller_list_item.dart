@@ -14,8 +14,13 @@ class BestSellerListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        GoRouter.of(context).push('/BookDetailsView/$index', extra: books);
+      onTap: () async {
+        await GoRouter.of(context).push('/BookDetailsView/$index',
+            extra: books
+                .map(
+                  (e) => e.toJson(),
+                )
+                .toList());
       },
       child: SizedBox(
         height: 120,
