@@ -14,9 +14,9 @@ class HomeCubit extends Cubit<HomeState> {
       : super(FeaturedBooksInitial());
   final FetchFeaturedBooksUseCase featuredBooksUseCase;
   final FetchNewestBooksUseCase fetchNewestBooksUseCase;
-  List<BookEnitie> fbooks = [];
-  List<BookEnitie> nbooks = [];
-  Future<void> fetcheBooks({int pageNamber = 0}) async {
+  List<BookEnitie> featureBooks = [];
+  List<BookEnitie> newestBooks = [];
+  Future<void> fetcheFeatureBooks({int pageNamber = 0}) async {
     if (pageNamber == 0) {
       emit(FeaturedBooksLoading());
     } else {
@@ -33,7 +33,7 @@ class HomeCubit extends Cubit<HomeState> {
         }
       },
       (books) {
-        fbooks = books;
+        featureBooks = books;
         emit(FeaturedBooksSuccess());
       },
     );
@@ -48,7 +48,7 @@ class HomeCubit extends Cubit<HomeState> {
         emit(NewestBooksError(failure.message));
       },
       (books) {
-        nbooks = books;
+        newestBooks = books;
         emit(NewestBooksSuccess());
       },
     );

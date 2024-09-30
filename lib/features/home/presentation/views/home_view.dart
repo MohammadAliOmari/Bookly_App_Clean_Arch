@@ -3,7 +3,7 @@ import 'package:bookly/core/utils/dependency_injection/locater.dart';
 import 'package:bookly/features/home/data/repositories/home_repositories_impl.dart';
 import 'package:bookly/features/home/domain/use_cases/fetch_featured_books_use_case.dart';
 import 'package:bookly/features/home/domain/use_cases/fetch_newest_books_use_case.dart';
-import 'package:bookly/features/home/presentation/manager/cubit/home_cubit.dart';
+import 'package:bookly/features/home/presentation/manager/home_cubit.dart';
 
 import 'package:bookly/features/home/presentation/views/widgets/home_view_body.dart';
 
@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
           getIt.get<HomeRepositoriesImpl>(),
         ),
       )
-        ..fetcheBooks()
+        ..fetcheFeatureBooks()
         ..fetcheNewestBooks(),
       child: const Scaffold(
         body: HomeViewBody(),

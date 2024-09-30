@@ -1,11 +1,9 @@
-import 'package:bookly/constants.dart';
-import 'package:bookly/core/widgets/shimmer_loading.dart';
-import 'package:bookly/features/home/presentation/manager/cubit/home_cubit.dart';
+import 'package:bookly/core/widgets/snack_bar.dart';
+import 'package:bookly/features/home/presentation/manager/home_cubit.dart';
 import 'package:bookly/features/home/presentation/views/widgets/feature_book_list.dart';
+import 'package:bookly/features/home/presentation/views/widgets/feature_book_list_shimmer_loaading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shimmer/shimmer.dart';
 
 class FeattureBookListBlocBuilder extends StatelessWidget {
   const FeattureBookListBlocBuilder({
@@ -16,26 +14,12 @@ class FeattureBookListBlocBuilder extends StatelessWidget {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is FeaturedBooksError) {
-          Fluttertoast.showToast(
-            msg: state.errorM,
-            backgroundColor: Colors.red,
-            toastLength: Toast.LENGTH_LONG,
-            timeInSecForIosWeb: 5,
-            gravity: ToastGravity.BOTTOM,
-            textColor: Colors.white,
-            fontSize: 16,
-          );
+          snackBar(
+              msg: state.errorM, color: Colors.red, textColor: Colors.white);
         }
         if (state is FeaturedBooksPaginatioError) {
-          Fluttertoast.showToast(
-            msg: state.errMsg,
-            backgroundColor: Colors.red,
-            toastLength: Toast.LENGTH_LONG,
-            timeInSecForIosWeb: 5,
-            gravity: ToastGravity.BOTTOM,
-            textColor: Colors.white,
-            fontSize: 16,
-          );
+          snackBar(
+              msg: state.errMsg, color: Colors.red, textColor: Colors.white);
         }
       },
       builder: (context, state) {
@@ -44,7 +28,7 @@ class FeattureBookListBlocBuilder extends StatelessWidget {
             state is FeaturedBooksPaginationLoading ||
             state is FeaturedBooksPaginatioError) {
           return FeatureBookList(
-            books: context.read<HomeCubit>().fbooks,
+            books: context.read<HomeCubit>().featureBooks,
           );
         } else if (state is FeaturedBooksError || state is NewestBooksError) {
           return Center(
@@ -55,29 +39,7 @@ class FeattureBookListBlocBuilder extends StatelessWidget {
                     : 'Thers is error '),
           );
         } else {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * .3,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: AspectRatio(
-                    aspectRatio: 2.6 / 4,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: ShimmerLoading(
-                          child: Container(
-                            color: Colors.grey,
-                          ),
-                        )),
-                  ),
-                );
-              },
-              itemCount: 10,
-            ),
-          );
+          return const FeaturedBooksListShimmerLoading();
         }
       },
     );

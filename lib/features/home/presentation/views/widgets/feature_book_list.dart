@@ -1,5 +1,5 @@
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
-import 'package:bookly/features/home/presentation/manager/cubit/home_cubit.dart';
+import 'package:bookly/features/home/presentation/manager/home_cubit.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_image_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +36,7 @@ class _FeatureBookListState extends State<FeatureBookList> {
         _scrollController.position.maxScrollExtent * 0.7) {
       if (!islodaing) {
         islodaing = true;
-        await context.read<HomeCubit>().fetcheBooks(
+        await context.read<HomeCubit>().fetcheFeatureBooks(
               pageNamber: nextPage++,
             );
         islodaing = false;
