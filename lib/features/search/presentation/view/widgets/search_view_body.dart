@@ -40,7 +40,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
             height: 20,
           ),
           TextFieldSearchView(
-            textEditingController: context.read<SearchCubit>().searchController,
+            textEditingController: searchCubit.searchController,
           ),
           const SizedBox(
             height: 22,

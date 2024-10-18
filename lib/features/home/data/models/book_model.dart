@@ -40,6 +40,7 @@ class BookModel extends BookEnitie {
           price: saleInfo?.listPrice?.amount,
           rating: volumeInfo.averageRating ?? 0,
           countRating: volumeInfo.ratingsCount ?? 0,
+          link: volumeInfo.previewLink ?? "",
         );
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(

@@ -17,9 +17,7 @@ abstract class AppRouter {
     GoRoute(
       path: kBookDetailsView,
       builder: (context, state) {
-        final List<dynamic> booksdata = state.extra as List<dynamic>;
-        final List<BookEnitie> books =
-            booksdata.map((data) => BookEnitie.fromJson(data)).toList();
+        final List<BookEnitie> books = state.extra as List<BookEnitie>;
         final int index = int.parse(state.pathParameters['index']!);
         return BookDetailsView(
           books: books,

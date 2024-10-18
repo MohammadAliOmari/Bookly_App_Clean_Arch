@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BooksDetailsButtonsAction extends StatelessWidget {
   const BooksDetailsButtonsAction(
@@ -29,8 +32,17 @@ class BooksDetailsButtonsAction extends StatelessWidget {
           ),
           Expanded(
             child: CustomButton(
+              onPressed: () async {
+                log('On Pressed URL');
+                Uri uri = Uri.parse(books[index].link);
+                if (!await launchUrl(uri)) {
+                  throw Exception('Could not launch $uri');
+                } else {
+                  await launchUrl(uri);
+                }
+              },
               style: Styles.textSyle16.copyWith(color: Colors.white),
-              text: 'Free Preview',
+              text: 'Preview',
               bgcolor: const Color(0xffEF8262),
               borderRadius: const BorderRadius.only(
                   bottomRight: Radius.circular(16),

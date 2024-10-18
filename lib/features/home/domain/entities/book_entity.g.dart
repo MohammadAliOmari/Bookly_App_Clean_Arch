@@ -17,6 +17,7 @@ class BookEnitieAdapter extends TypeAdapter<BookEnitie> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return BookEnitie(
+      link: fields[7] as String,
       bookid: fields[0] as String,
       image: fields[1] as String?,
       title: fields[2] as String,
@@ -30,7 +31,7 @@ class BookEnitieAdapter extends TypeAdapter<BookEnitie> {
   @override
   void write(BinaryWriter writer, BookEnitie obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.bookid)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class BookEnitieAdapter extends TypeAdapter<BookEnitie> {
       ..writeByte(5)
       ..write(obj.rating)
       ..writeByte(6)
-      ..write(obj.countRating);
+      ..write(obj.countRating)
+      ..writeByte(7)
+      ..write(obj.link);
   }
 
   @override

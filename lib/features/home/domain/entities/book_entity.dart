@@ -17,8 +17,11 @@ class BookEnitie {
   final num? rating;
   @HiveField(6)
   final num countRating;
+  @HiveField(7)
+  final String link;
 
   BookEnitie({
+    required this.link,
     required this.bookid,
     required this.image,
     required this.title,
@@ -29,6 +32,7 @@ class BookEnitie {
   });
   Map<String, dynamic> toJson() {
     return {
+      "link": link,
       'bookid': bookid,
       'title': title,
       'authorName': authorName,
@@ -48,6 +52,7 @@ class BookEnitie {
       price: json['price'],
       rating: json['rating'],
       countRating: json['countRating'],
+      link: json['link'],
     );
   }
 }

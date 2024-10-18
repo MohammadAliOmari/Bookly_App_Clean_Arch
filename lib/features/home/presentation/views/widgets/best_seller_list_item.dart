@@ -17,10 +17,7 @@ class BestSellerListItem extends StatelessWidget {
       onTap: () async {
         await GoRouter.of(context).push('/BookDetailsView/$index',
             extra: books
-                .map(
-                  (e) => e.toJson(),
-                )
-                .toList());
+               );
       },
       child: SizedBox(
         height: 120,

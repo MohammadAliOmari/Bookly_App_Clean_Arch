@@ -6,11 +6,14 @@ class ShimmerLoading extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey.shade500,
-      highlightColor: Colors.grey.shade300,
-      enabled: true,
-      child: child,
+    return Opacity(
+      opacity: 0.2,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade500,
+        highlightColor: Colors.grey.shade300,
+        enabled: true,
+        child: child,
+      ),
     );
   }
 }

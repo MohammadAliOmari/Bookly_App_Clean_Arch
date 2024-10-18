@@ -21,7 +21,11 @@ final class FeaturedBooksError extends HomeState {
   FeaturedBooksError(this.errorM);
 }
 
-final class FeaturedBooksSuccess extends HomeState {}
+final class FeaturedBooksSuccess extends HomeState {
+  final List<BookEnitie> books;
+
+  FeaturedBooksSuccess(this.books);
+}
 
 final class NewestBooksLoading extends HomeState {}
 
@@ -31,4 +35,8 @@ final class NewestBooksError extends HomeState {
   NewestBooksError(this.errorM);
 }
 
-final class NewestBooksSuccess extends HomeState {}
+final class NewestBooksSuccess extends HomeState {
+  final List<BookEnitie> books;
+
+  NewestBooksSuccess(this.books);
+}

@@ -1,6 +1,7 @@
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_image_item.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BooksDetailsList extends StatelessWidget {
   const BooksDetailsList({
@@ -20,9 +21,15 @@ class BooksDetailsList extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 7),
-              child: CustomBookImageItem(
-                image: books[index].image ??
-                    'https://images.unsplash.com/photo-1532012197267-da84d127e765?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D',
+              child: GestureDetector(
+                onTap: () {
+                  GoRouter.of(context)
+                      .push('/BookDetailsView/$index', extra: books);
+                },
+                child: CustomBookImageItem(
+                  image: books[index].image ??
+                      'https://images.unsplash.com/photo-1532012197267-da84d127e765?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D',
+                ),
               ),
             );
           },

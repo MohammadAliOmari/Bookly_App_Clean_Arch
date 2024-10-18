@@ -57,12 +57,8 @@ class _FeatureBookListState extends State<FeatureBookList> {
             padding: const EdgeInsets.only(left: 20),
             child: GestureDetector(
               onTap: () async {
-                await GoRouter.of(context).push('/BookDetailsView/$index',
-                    extra: widget.books
-                        .map(
-                          (e) => e.toJson(),
-                        )
-                        .toList());
+                await GoRouter.of(context)
+                    .push('/BookDetailsView/$index', extra: widget.books);
               },
               child: CustomBookImageItem(
                 image: widget.books[index].image ??
