@@ -1,10 +1,8 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/core/utils/bloc_observer.dart';
 import 'package:bookly/core/utils/dependency_injection/locater.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -14,7 +12,7 @@ void main() async {
   await Hive.openBox<BookEnitie>(kFeaturedBox);
   await Hive.openBox<BookEnitie>(kNewestBox);
   setupServiceLocater();
-  Bloc.observer = MyBlocObserver();
+  // Bloc.observer = MyBlocObserver();
 
   runApp(const BokllyApp());
 }
