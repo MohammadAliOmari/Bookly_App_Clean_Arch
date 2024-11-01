@@ -1,6 +1,5 @@
 import 'package:bookly/core/utils/api_services.dart';
-import 'package:bookly/features/home/data/models/book_model.dart';
-import 'package:bookly/features/home/domain/entities/book_entity.dart';
+
 import 'package:bookly/features/search/data/model/search_model.dart';
 import 'package:bookly/features/search/domain/entites/book_entity.dart';
 
