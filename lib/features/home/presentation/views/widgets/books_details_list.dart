@@ -8,7 +8,7 @@ class BooksDetailsList extends StatelessWidget {
     super.key,
     required this.books,
   });
-  final List<BookEnitie> books;
+  final List<dynamic> books;
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -6,14 +6,14 @@ class Bookentite {
   final num? price;
   final num? rating;
   final num countRating;
-
-  Bookentite({
-    required this.bookid,
-    required this.image,
-    required this.title,
-    required this.authorName,
-    required this.price,
-    required this.rating,
-    required this.countRating,
-  });
+  final String? link;
+  Bookentite(
+      {required this.bookid,
+      required this.image,
+      required this.title,
+      required this.authorName,
+      required this.price,
+      required this.rating,
+      required this.countRating,
+      required this.link});
 }

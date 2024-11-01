@@ -28,7 +28,7 @@ abstract class AppRouter {
     GoRoute(
       path: kSearchBookDetailsView,
       builder: (context, state) {
-        final List<BookEnitie> books = state.extra as List<BookEnitie>;
+        final List<dynamic> books = state.extra as List<dynamic>;
 
         final int index = int.parse(state.pathParameters['index']!);
         return BookDetailsView(

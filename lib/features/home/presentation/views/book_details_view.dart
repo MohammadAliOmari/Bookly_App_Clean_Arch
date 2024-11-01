@@ -15,7 +15,7 @@ class BookDetailsView extends StatelessWidget {
     required this.books,
   });
   final int index;
-  final List<BookEnitie> books;
+  final List<dynamic> books;
 
   @override
   Widget build(BuildContext context) {

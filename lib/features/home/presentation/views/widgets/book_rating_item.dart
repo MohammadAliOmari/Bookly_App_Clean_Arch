@@ -10,7 +10,7 @@ class BookRatingItem extends StatelessWidget {
       required this.books,
       required this.index});
   final MainAxisAlignment mainAxisAlignment;
-  final List<BookEnitie> books;
+  final List<dynamic> books;
   final int index;
   @override
   Widget build(BuildContext context) {

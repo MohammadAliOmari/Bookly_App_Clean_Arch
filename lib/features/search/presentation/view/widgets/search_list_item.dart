@@ -2,12 +2,13 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_rating_item.dart';
+import 'package:bookly/features/search/domain/entites/book_entity.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class SearchListItem extends StatelessWidget {
   const SearchListItem({super.key, required this.books, required this.index});
-  final List<BookEnitie> books;
+  final List<Bookentite> books;
   final int index;
   @override
   Widget build(BuildContext context) {

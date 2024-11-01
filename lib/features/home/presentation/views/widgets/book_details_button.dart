@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 class BooksDetailsButtonsAction extends StatelessWidget {
   const BooksDetailsButtonsAction(
       {super.key, required this.books, required this.index});
-  final List<BookEnitie> books;
+  final List<dynamic> books;
   final int index;
   @override
   Widget build(BuildContext context) {

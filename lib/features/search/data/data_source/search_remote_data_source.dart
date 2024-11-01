@@ -1,9 +1,11 @@
 import 'package:bookly/core/utils/api_services.dart';
 import 'package:bookly/features/home/data/models/book_model.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
+import 'package:bookly/features/search/data/model/search_model.dart';
+import 'package:bookly/features/search/domain/entites/book_entity.dart';
 
 abstract class SearchRemoteDataSource {
-  Future<List<BookEnitie>> fetchSearchResult(String endpoint);
+  Future<List<Bookentite>> fetchSearchResult(String endpoint);
 }
 
 class SearcHremoteDataSourceImpl extends SearchRemoteDataSource {
@@ -11,17 +13,16 @@ class SearcHremoteDataSourceImpl extends SearchRemoteDataSource {
 
   SearcHremoteDataSourceImpl(this.apiServices);
   @override
-  Future<List<BookEnitie>> fetchSearchResult(String endpoint) async {
-    var data = await apiServices.get(
-        endPoint: 'Filtering=free-ebooks&q=$endpoint&Sorting=toprating');
-    List<BookEnitie> books = getBookList(data);
+  Future<List<Bookentite>> fetchSearchResult(String endpoint) async {
+    var data = await apiServices.get(endPoint: 'q=$endpoint');
+    List<Bookentite> books = getBookList(data);
     return books;
   }
 
-  List<BookEnitie> getBookList(Map<String, dynamic> data) {
-    List<BookEnitie> books = [];
+  List<Bookentite> getBookList(Map<String, dynamic> data) {
+    List<Bookentite> books = [];
     for (var bookMap in data["items"]) {
-      books.add(BookModel.fromJson(bookMap));
+      books.add(SearchBookModel.fromJson(bookMap));
     }
     return books;
   }

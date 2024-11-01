@@ -11,7 +11,7 @@ class BookDetailsBlocConsumer extends StatelessWidget {
     required this.index,
   });
 
-  final List<BookEnitie> books;
+  final List<dynamic> books;
   final int index;
 
   @override

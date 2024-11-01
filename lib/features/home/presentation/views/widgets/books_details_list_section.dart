@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class BookDetailsListSection extends StatelessWidget {
   const BookDetailsListSection({super.key, required this.books});
-  final List<BookEnitie> books;
+  final List<dynamic> books;
   @override
   Widget build(BuildContext context) {
     return Column(

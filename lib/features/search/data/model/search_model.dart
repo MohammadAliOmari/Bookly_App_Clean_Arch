@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:bookly/features/home/domain/entities/book_entity.dart';
+import 'package:bookly/features/search/domain/entites/book_entity.dart';
 
 List<SearchBookModel> searchBookModelFromJson(String str) =>
     List<SearchBookModel>.from(
@@ -13,7 +13,7 @@ List<SearchBookModel> searchBookModelFromJson(String str) =>
 String searchBookModelToJson(List<SearchBookModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class SearchBookModel extends BookEnitie {
+class SearchBookModel extends Bookentite {
   Kind? kind;
   String? id;
   String? etag;
@@ -38,7 +38,10 @@ class SearchBookModel extends BookEnitie {
           image: volumeInfo!.imageLinks?.thumbnail ??
               'https://images.unsplash.com/photo-1532012197267-da84d127e765?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D',
           title: volumeInfo.title!,
-          authorName: volumeInfo.authors?.first ?? 'No',
+          authorName:
+              (volumeInfo.authors != null && volumeInfo.authors!.isNotEmpty)
+                  ? volumeInfo.authors!.first
+                  : '',
           price: saleInfo?.listPrice?.amount,
           rating: volumeInfo.averageRating ?? 0,
           countRating: volumeInfo.ratingsCount ?? 0,
@@ -64,7 +67,6 @@ class SearchBookModel extends BookEnitie {
             : SearchInfo.fromJson(json["searchInfo"]),
       );
 
-  @override
   Map<String, dynamic> toJson() => {
         "kind": kindValues.reverse[kind],
         "id": id,
@@ -112,7 +114,7 @@ class AccessInfo {
         epub: json["epub"] == null ? null : Epub.fromJson(json["epub"]),
         pdf: json["pdf"] == null ? null : Epub.fromJson(json["pdf"]),
         webReaderLink: json["webReaderLink"],
-        accessViewStatus: accessViewStatusValues.map[json["accessViewStatus"]]!,
+        accessViewStatus: accessViewStatusValues.map[json["accessViewStatus"]],
         quoteSharingAllowed: json["quoteSharingAllowed"],
       );
 
